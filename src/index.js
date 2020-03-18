@@ -1,50 +1,61 @@
-Stage(function (stage) {
-    stage.viewbox(500, 500);
+function Dino(name, offsetX, offsetY) {
+    this.offsetX = offsetX;
+    this.offsetY = offsetY;
+    this.name = name;
+    this.uiCreate();
 
-    var dino = Stage
-        .image('dino:stand')
-        .appendTo(stage)
-        .pin({
-            align: 0.5,
-            handle: 0.5,
-            offsetX: 0,
-            offsetY: 0
-        });
+    var that = this;
+    this.keyDown = function (event) {
+        if (event.keyCode == 39) {
+            that.offsetX += 24;
+        }
+        else if (event.keyCode == 37) {
+            that.offsetX -= 24;
+        }
+        else if (event.keyCode == 40) {
+            that.offsetY += 24;
+        }
+        else if (event.keyCode == 38) {
+            that.offsetY -= 24;
+        }
 
-    var dino2 = Stage
+        that.ui
+            .tween(200)
+            .offset(that.offsetX, that.offsetY)
+            .ease('quad-out');
+    };
+}
+
+Dino.prototype.uiCreate = function () {
+    this.ui = Stage
         .anim('dino:idle', fps = 10)
-        .appendTo(stage)
         .pin({
             align: 0.5,
             handle: 0.5,
-            offsetX: 48
+            offsetX: this.offsetX,
+            offsetY: this.offsetY
         })
         .play();
+};
 
-    dino2offsetX = 48;
-    dino2.on('click', function () {
-        console.log('dino2 clicked');
-        dino2offsetX += 24;
-        this.tween(200)
-            .pin({
-                offsetX: dino2offsetX
-            })
-            .ease('quad-out');
-    });
-});
+Stage(function (stage) {
+    stage.background('#DDDDDD');
+    stage.viewbox(500, 500);
 
-Stage({
-    name: 'dino', // optional
-    image: {
-        src: './assets/DinoSprites - vita.png'
-    },
-    textures: {
-        stand: { x: 0, y: 0, width: 24, height: 24 },
-        idle: [
-            { x: 0, y: 0, width: 24, height: 24 },
-            { x: 24, y: 0, width: 24, height: 24 },
-            { x: 48, y: 0, width: 24, height: 24 },
-            { x: 72, y: 0, width: 24, height: 24 }
-        ],
-    }
+    var myDino = new Dino('Blekkulf', 0, 0);
+    myDino.ui.appendTo(stage);
+
+    var myDino2 = new Dino('Blekkulf', 24 * 5, 0);
+    myDino2.ui.appendTo(stage);
+
+    var dino1IsActive = true;
+
+    document.addEventListener('keydown', function (event) {
+        console.log(event.keyCode);
+        if (event.keyCode == 32) {
+            dino1IsActive = !dino1IsActive;
+        }
+        if (dino1IsActive) myDino.keyDown(event);
+        else myDino2.keyDown(event);
+    }, false);
 });
