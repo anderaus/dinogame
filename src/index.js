@@ -20,6 +20,17 @@ Stage(function (stage) {
             offsetX: 48
         })
         .play();
+
+    dino2offsetX = 48;
+    dino2.on('click', function () {
+        console.log('dino2 clicked');
+        dino2offsetX += 24;
+        this.tween(200)
+            .pin({
+                offsetX: dino2offsetX
+            })
+            .ease('quad-out');
+    });
 });
 
 Stage({
