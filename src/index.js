@@ -2,7 +2,7 @@ function Dino(name, offsetX, offsetY) {
     this.offsetX = offsetX;
     this.offsetY = offsetY;
     this.name = name;
-    this.uiCreate();
+    this.uiCreate(name);
 
     var that = this;
     this.keyDown = function (event) {
@@ -26,9 +26,9 @@ function Dino(name, offsetX, offsetY) {
     };
 }
 
-Dino.prototype.uiCreate = function () {
+Dino.prototype.uiCreate = function (name) {
     this.ui = Stage
-        .anim('dino:idle', fps = 10)
+        .anim('dino-' + name + ':idle', fps = 10)
         .pin({
             align: 0.5,
             handle: 0.5,
@@ -42,20 +42,21 @@ Stage(function (stage) {
     stage.background('#DDDDDD');
     stage.viewbox(500, 500);
 
-    var myDino = new Dino('Blekkulf', 0, 0);
-    myDino.ui.appendTo(stage);
+    var dinos = [];
+    var activeDino = 0;
 
-    var myDino2 = new Dino('Blekkulf', 24 * 5, 0);
-    myDino2.ui.appendTo(stage);
+    dinos.push(new Dino('vita', -24 * 5, -24 * 5));
+    dinos.push(new Dino('mort', 24 * 5, -24 * 5));
+    dinos.push(new Dino('doux', 24 * 5, 24 * 5));
+    dinos.push(new Dino('tard', -24 * 5, 24 * 5));
 
-    var dino1IsActive = true;
+    dinos.forEach(d => d.ui.appendTo(stage));
 
     document.addEventListener('keydown', function (event) {
-        console.log(event.keyCode);
         if (event.keyCode == 32) {
-            dino1IsActive = !dino1IsActive;
+            activeDino++;
+            if (activeDino >= dinos.length) activeDino = 0;
         }
-        if (dino1IsActive) myDino.keyDown(event);
-        else myDino2.keyDown(event);
+        dinos[activeDino].keyDown(event);
     }, false);
 });
