@@ -1,11 +1,11 @@
 # Dinogame
 
 A very simple signalr multiplayer dino game for demo purposes
+Live: https://quirky-swanson-4ec4ab.netlify.com/
 
 ## Client
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/9a699ec7-525f-4da9-9668-c3b020695bd2/deploy-status)](https://app.netlify.com/sites/quirky-swanson-4ec4ab/deploys)  
-https://quirky-swanson-4ec4ab.netlify.com
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9a699ec7-525f-4da9-9668-c3b020695bd2/deploy-status)](https://app.netlify.com/sites/quirky-swanson-4ec4ab/deploys)
 
 ## SignalR hub
 
