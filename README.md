@@ -1,6 +1,6 @@
 # Dinogame
 
-A very simple signalr multiplayer dino game for demo purposes
+A very simple signalr multiplayer dino game for demo purposes  
 Live: https://quirky-swanson-4ec4ab.netlify.com/
 
 ## Client
