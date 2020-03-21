@@ -28,7 +28,8 @@ namespace DinoR
 
             app.UseCors(builder =>
                 {
-                    builder.WithOrigins("http://127.0.0.1:5500")
+                    builder
+                        .WithOrigins("http://127.0.0.1:5500", "https://quirky-swanson-4ec4ab.netlify.com")
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowCredentials();
