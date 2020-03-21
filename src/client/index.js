@@ -1,5 +1,6 @@
 var connection = new signalR.HubConnectionBuilder()
-    .withUrl("http://localhost:5000/dinoHub")
+    // .withUrl("http://localhost:5000/dinoHub")
+    .withUrl("https://dinogame.azurewebsites.net/dinoHub")
     .configureLogging(signalR.LogLevel.Debug)
     .build();
 
