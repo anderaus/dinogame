@@ -10,8 +10,7 @@ namespace DinoR
         public int Y { get; set; }
         public Direction Direction { get; set; } = Direction.None;
 
-        private static readonly string[] DinoTypes = new[]
-        {
+        private static readonly string[] DinoTypes = {
             "vita",
             "mort",
             "doux",
