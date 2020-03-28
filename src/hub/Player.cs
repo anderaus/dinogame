@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace DinoR
 {
@@ -11,7 +10,8 @@ namespace DinoR
         public int Y { get; set; }
         public Direction Direction { get; set; } = Direction.None;
 
-        private static string[] _dinoTypes = new[] {
+        private static readonly string[] DinoTypes = new[]
+        {
             "vita",
             "mort",
             "doux",
@@ -20,26 +20,40 @@ namespace DinoR
 
         public void Move()
         {
-            if (Direction == Direction.Up) Y--;
-            else if (Direction == Direction.Right) X++;
-            else if (Direction == Direction.Down) Y++;
-            else if (Direction == Direction.Left) X--;
+            switch (Direction)
+            {
+                case Direction.Up:
+                    Y--;
+                    break;
+                case Direction.Right:
+                    X++;
+                    break;
+                case Direction.Down:
+                    Y++;
+                    break;
+                case Direction.Left:
+                    X--;
+                    break;
+            }
 
             if (X < -10)
             {
                 X = -10;
                 Direction = Direction.None;
             }
+
             if (X > 10)
             {
                 X = 10;
                 Direction = Direction.None;
             }
+
             if (Y > 10)
             {
                 Y = 10;
                 Direction = Direction.None;
             }
+
             if (Y < -10)
             {
                 Y = -10;
@@ -50,16 +64,8 @@ namespace DinoR
         public static string GetRandomType()
         {
             var random = new Random();
-            var index = random.Next(0, _dinoTypes.Length);
-            return _dinoTypes[index];
+            var index = random.Next(0, DinoTypes.Length);
+            return DinoTypes[index];
         }
-    }
-
-    public enum DinoType
-    {
-        Vita,
-        Mort,
-        Doux,
-        Tard
     }
 }
