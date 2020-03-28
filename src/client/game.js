@@ -7,11 +7,11 @@ function Game(ui, connection) {
     };
 
     document.addEventListener('keydown', function (event) {
-        var myDino = dinos.find(d => d.id === myDinoId);
+        // var myDino = dinos.find(d => d.id === myDinoId);
         // Update locally for immediate effect
-        myDino.keyDown(event.keyCode);
+        // myDino.keyDown(event.keyCode);
         // ...as well as serverside to alert other clients
-        connection.invoke('keyDown', myDino.id, event.keyCode);
+        connection.invoke('keyDown', event.keyCode);
     }, false);
 
     connection.on("StateUpdate", function (players) {

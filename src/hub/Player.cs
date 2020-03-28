@@ -9,6 +9,7 @@ namespace DinoR
         public string Type { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
+        public Direction Direction { get; set; } = Direction.None;
 
         private static string[] _dinoTypes = new[] {
             "vita",
@@ -17,12 +18,33 @@ namespace DinoR
             "tard"
         };
 
-        public void Move(Direction direction)
+        public void Move()
         {
-            if (direction == Direction.Up) Y--;
-            else if (direction == Direction.Right) X++;
-            else if (direction == Direction.Down) Y++;
-            else if (direction == Direction.Left) X--;
+            if (Direction == Direction.Up) Y--;
+            else if (Direction == Direction.Right) X++;
+            else if (Direction == Direction.Down) Y++;
+            else if (Direction == Direction.Left) X--;
+
+            if (X < -10)
+            {
+                X = -10;
+                Direction = Direction.None;
+            }
+            if (X > 10)
+            {
+                X = 10;
+                Direction = Direction.None;
+            }
+            if (Y > 10)
+            {
+                Y = 10;
+                Direction = Direction.None;
+            }
+            if (Y < -10)
+            {
+                Y = -10;
+                Direction = Direction.None;
+            }
         }
 
         public static string GetRandomType()

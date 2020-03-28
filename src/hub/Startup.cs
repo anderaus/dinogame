@@ -15,8 +15,10 @@ namespace DinoR
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddSignalR();
-            services.AddSingleton<IGameEngine, GameEngine>();
+            services.AddSignalR(o => o.EnableDetailedErrors = true);
+            services.AddSingleton<IGame, Game>();
+
+            services.AddHostedService<BackgroundWorker>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
