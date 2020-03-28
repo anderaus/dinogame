@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.SignalR;
-using System.Threading.Tasks;
-using System.IO;
 using Microsoft.Extensions.Logging;
-using System;
 using Newtonsoft.Json;
+using System;
+using System.Threading.Tasks;
 
 namespace DinoR
 {
@@ -26,21 +25,20 @@ namespace DinoR
         public async Task KeyDown(string id, int keyCode)
         {
             var direction = Direction.None;
-            if (keyCode == 39)
+            switch (keyCode)
             {
-                direction = Direction.Right;
-            }
-            else if (keyCode == 37)
-            {
-                direction = Direction.Left;
-            }
-            else if (keyCode == 40)
-            {
-                direction = Direction.Down;
-            }
-            else if (keyCode == 38)
-            {
-                direction = Direction.Up;
+                case 39:
+                    direction = Direction.Right;
+                    break;
+                case 37:
+                    direction = Direction.Left;
+                    break;
+                case 40:
+                    direction = Direction.Down;
+                    break;
+                case 38:
+                    direction = Direction.Up;
+                    break;
             }
 
             var player = _engine.GetPlayer(id);
