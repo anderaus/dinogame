@@ -1,7 +1,7 @@
 var hubUrl =
-    window.location.host.indexOf("localhost") != -1 && window.location.host.indexOf("127.0.0.1") != -1
-        ? "https://dinogame.azurewebsites.net/dinoHub"
-        : "http://localhost:5000/dinoHub";
+    window.location.host.indexOf("localhost") != -1 || window.location.host.indexOf("127.0.0.1") != -1
+        ? "http://localhost:5000/dinoHub"
+        : "https://dinogame.azurewebsites.net/dinoHub";
 var connection = new signalR.HubConnectionBuilder()
     .withUrl(hubUrl)
     .configureLogging(signalR.LogLevel.Debug)
